@@ -32,6 +32,7 @@ const app = new Elysia()
         Query: {
           users: async () => {
             return await getUsersService();
+
           },
         },
         Mutation: {
@@ -87,8 +88,7 @@ const app = new Elysia()
         .post("/users", async (req) => {
           const user = await createUserService(req.body);
           req.set.status = 201;
-
-          return user;
+          return user
         })
         .put("/users/:id", async (req) => {
           const { id } = req.params;
@@ -99,9 +99,7 @@ const app = new Elysia()
         })
   )
   .get("/users", async () => {
-    const users = await getUsersService();
-    console.log({ users });
-    return users;
+    return await getUsersService();
   })
 
   .delete("/users/:id", async (req) => {

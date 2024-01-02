@@ -1,6 +1,7 @@
+import User from "@/models/user";
 import db from "database/db";
 
-const updateUserService = ({
+const updateUserService = async ({
   id,
   name,
   email,
@@ -9,7 +10,7 @@ const updateUserService = ({
   name: string;
   email: string;
 }) =>
-  db.user.update({
+  new User(await db.user.update({
     where: {
       id,
     },
@@ -17,6 +18,6 @@ const updateUserService = ({
       name,
       email,
     },
-  });
+  }));
 
 export default updateUserService;

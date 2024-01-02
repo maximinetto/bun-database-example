@@ -1,8 +1,9 @@
+import User from "@/models/user";
 import db from "database/db";
 
-const deleteUsersService = (id: string) =>
-  db.user.delete({
+const deleteUsersService = async (id: string) =>
+  new User(await db.user.delete({
     where: { id },
-  });
+  }));
 
 export default deleteUsersService;
